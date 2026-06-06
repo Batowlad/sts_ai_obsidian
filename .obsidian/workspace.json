@@ -1,0 +1,214 @@
+{
+  "main": {
+    "id": "7248c00086d9cac1",
+    "type": "split",
+    "children": [
+      {
+        "id": "cd9f6a00162c1a00",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "38a06b537747b189",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "62bb656edc145b44",
+    "type": "split",
+    "children": [
+      {
+        "id": "8d85e1ad18317335",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "29e85737b8364a7c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "fd11b05f19a5fc43",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "65349da3475c11fd",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "64fc66e2bc984763",
+    "type": "split",
+    "children": [
+      {
+        "id": "1d82d43c79ad1abc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d230ffeb276929bf",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "34754a52563c46ba",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "9e3805fbfa144986",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "1fb8b2bf15dead22",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "0c447100f68ba873",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "38a06b537747b189",
+  "lastOpenFiles": [
+    "wiki/concepts/model-free-reinforcement-learning.md",
+    "wiki/sources/2021-08-15-creating-an-ai-for-slay-the-spire.md",
+    "raw/Creating an AI for Slay the Spire.md",
+    "log.md.tmp.16936.7baf3ccc0af3",
+    "index.md.tmp.16936.2cca38f3e622",
+    "wiki/claims/frequent-rewards-beat-sparse.md",
+    "wiki/claims/direct-action-spaces-easier-to-learn.md",
+    "wiki/claims/direct-action-spaces-easier-to-learn.md.tmp.16936.1355077fe28b",
+    "wiki/claims/tree-search-outplays-rl-but-cheats.md",
+    "wiki/claims/hardcoded-ai-wont-scale.md",
+    "wiki/claims/hardcoded-ai-wont-scale.md.tmp.16936.a1c07b62c730",
+    "wiki/studies/sc2le-pysc2.md",
+    "wiki/studies/sc2le-pysc2.md.tmp.16936.ff47d9a15e95",
+    "wiki/studies/dqn-atari.md",
+    "wiki/studies/decapitate-the-spire.md",
+    "wiki/studies/decapitate-the-spire.md.tmp.16936.ce38bd8ceb97",
+    "wiki/studies/sts-battle-ai.md",
+    "wiki/studies/sts-battle-ai.md.tmp.16936.cecd16e1bbe3",
+    "wiki/studies/spirecomm.md",
+    "wiki/studies/spirecomm.md.tmp.16936.4ae846e47a51",
+    "wiki/people/toypiper-jahabrewer.md",
+    "wiki/concepts/hierarchical-agents.md",
+    "wiki/concepts/hierarchical-agents.md.tmp.16936.6e3437c70c4a",
+    "wiki/concepts/curriculum-learning.md",
+    "wiki/concepts/curriculum-learning.md.tmp.16936.9c72ed83dee8",
+    "wiki/concepts/reward-engineering.md",
+    "wiki/concepts/autoregressive-actions.md",
+    "wiki/concepts/action-space-design.md",
+    "wiki/concepts/slay-the-spire.md",
+    "raw/Deck Building Algorithms in Slay the Spire paper.md",
+    "Clippings/Slay the Spire algorithms paper.md",
+    "Welcome.md"
+  ]
+}
