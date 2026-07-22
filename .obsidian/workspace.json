@@ -178,6 +178,9 @@
   },
   "active": "38a06b537747b189",
   "lastOpenFiles": [
+    "log.md",
+    "wiki/studies/spirecomm.md",
+    "wiki/concepts/slay-the-spire.md",
     "wiki/concepts/model-free-reinforcement-learning.md",
     "wiki/sources/2021-08-15-creating-an-ai-for-slay-the-spire.md",
     "raw/Creating an AI for Slay the Spire.md",
@@ -196,7 +199,6 @@
     "wiki/studies/decapitate-the-spire.md.tmp.16936.ce38bd8ceb97",
     "wiki/studies/sts-battle-ai.md",
     "wiki/studies/sts-battle-ai.md.tmp.16936.cecd16e1bbe3",
-    "wiki/studies/spirecomm.md",
     "wiki/studies/spirecomm.md.tmp.16936.4ae846e47a51",
     "wiki/people/toypiper-jahabrewer.md",
     "wiki/concepts/hierarchical-agents.md",
@@ -206,7 +208,6 @@
     "wiki/concepts/reward-engineering.md",
     "wiki/concepts/autoregressive-actions.md",
     "wiki/concepts/action-space-design.md",
-    "wiki/concepts/slay-the-spire.md",
     "raw/Deck Building Algorithms in Slay the Spire paper.md",
     "Clippings/Slay the Spire algorithms paper.md",
     "Welcome.md"

@@ -3,36 +3,30 @@ type: concept
 title: "Slay the Spire (as an AI domain)"
 status: developing
 source_count: 1
-updated: 2026-06-05
-tags: [slay-the-spire, domain, roguelite]
+updated: 2026-07-22
+tags: [domain, game, roguelike]
 ---
 
 # Slay the Spire (as an AI domain)
 
-Slay the Spire is a single-player deckbuilding roguelite. As a target for AI, its
-appeal is that it can be played many times (good for [[model-free-reinforcement-learning|RL]]),
-but its **roguelite traits make a single playing policy hard to learn**.
+Slay the Spire is a single-player deck-building roguelike: climb a spire floor by
+floor, fighting enemies with a deck of cards, managing HP/energy/relics, and making
+path and reward choices between fights. It's the environment this project's agent plays
+via [[sts-lightspeed]].
 
-## Why it's hard (per [[2021-08-15-creating-an-ai-for-slay-the-spire]])
-- Randomness throughout
-- Procedural map generation
-- Card drafting decisions
-- Convertible currencies — health, gold, cards, etc., traded against each other
-- Long reward horizon
-- Powerful but **rare synergies** between relics and cards
+**Why it's a hard, interesting domain for an LLM agent:**
+- **Long horizon.** A full run is **1000+ decisions** — which is exactly what makes
+  [[state-encoding|context pressure]] constant and [[stage-8-rl-fine-tuning|RL rollout
+  cost]] brutal.
+- **Sparse win signal.** You only *win* at the very end, motivating the
+  [[sparse-vs-shaped-reward]] debate ([[reward-design]]).
+- **Combinatorial actions.** Card plays, targets, and non-combat choices form a large,
+  state-dependent legal-action set the [[env-action-parser|parser]] must map onto.
+- **Hidden information & RNG.** Card draws, enemy intents, and map events add variance,
+  which is why [[evaluation-statistics|seed control]] matters when measuring.
 
-## Structure relevant to agents
-- A **dungeon** is ~15 sequential encounters (combat, shops, events, treasure) ending
-  in a boss combat. The first dungeon is **Exordium**.
-- Distinct sub-problems: **combat**, **card drafting**, **shop purchasing**, **events**,
-  and **map/path selection** — which motivates [[hierarchical-agents|composite-agent]]
-  designs.
-- The **monster distribution per dungeon is fixed** (not seeded per game), though the
-  specific monsters sampled are random — relevant to what counts as "cheating" for an
-  assist tool.
-- **HP** is arguably the most important currency; predicting HP loss underpins the
-  proposed [[hp-loss-model]].
+**Prior art to position against** (Stage 10): [[spirecomm]], [[sts-battle-ai]],
+[[decapitate-the-spire]] — currently redlinks; survey near [[stage-10-writeup]].
 
-## Related
-- Prior agents: [[spirecomm]], [[sts-battle-ai]]
-- Tooling: [[decapitate-the-spire]] (headless clone for fast training)
+**Used in:** [[stage-0-environment-orientation]] · [[overview]]. **Source:**
+[[2026-07-22-project-pipeline]].

@@ -1,65 +1,83 @@
 ---
 type: overview
-title: "Overview"
-status: developing
-updated: 2026-06-05
-tags: [meta, slay-the-spire, reinforcement-learning]
+title: "Project overview & vision"
+current_stage: 0
+updated: 2026-07-22
+tags: [meta, vision]
 ---
 
-# Overview
+# Overview — LLM plays Slay the Spire
 
-The front door to this wiki: the **living thesis** and a **map** of what's inside.
-I revise this whenever a new source strengthens, weakens, or shifts the picture.
+**The project.** Train a small open LLM (a [[qwen]] instruct model) to play
+[[slay-the-spire]] well, by wrapping the [[sts-lightspeed]] simulator, encoding game
+states as text, letting the model choose actions, and then improving it with
+**supervised fine-tuning** ([[supervised-fine-tuning]]) followed by **reinforcement
+learning** ([[reinforcement-learning-grpo]]). The deliverable is a rigorous
+experiment + writeup, not a demo.
 
-**Topic (emerging):** building an AI to play **[[slay-the-spire]]** — methods,
-prior work, and what makes the game hard.
+**Why this shape.** The core bet is to use a language model *as the policy*
+([[llm-as-policy]]) instead of training a network from scratch on raw game features.
+That makes the two text boundaries — *game → text* ([[state-encoding]]) and *text →
+action* ([[env-action-parser|action parsing]]) — the load-bearing design surfaces.
 
-## Thesis (v0.1 — from 1 source)
-Building a strong Slay the Spire AI is hard because its roguelite traits (randomness,
-procedural maps, long/ sparse reward horizons, rare synergies) resist a single learned
-policy. Early evidence (from one practitioner's [[model-free-reinforcement-learning|RL]]
-retrospective) suggests the decisive factors are **engineering choices around the
-learning problem**, not raw algorithm power:
-- **[[action-space-design]]** — direct, identity-keyed, [[autoregressive-actions|autoregressive]]
-  actions beat flat/indirect/overloaded ones.
-- **[[reward-engineering]]** — dense feedback is needed, but naive shaping invites
-  reward hacking.
-- **[[curriculum-learning]]** — decompose into measurable milestones and toy
-  environments you can verify by hand.
+## Current state
 
-A parallel finding: a non-learned **search** agent ([[sts-battle-ai]]) outplays RL in
-combat — but only by exploiting hidden RNG, so the comparison is unfair. Whether
-**[[hierarchical-agents|composite agents]]** beat a single full-game agent is open.
+- **Stage:** 0 — [[stage-0-environment-orientation|environment & orientation]] (not started).
+- **Nothing built yet.** Component and code pages are `planned` until their stage begins.
 
-> Caveat: this thesis rests on a **single source** ([[toypiper-jahabrewer]]'s
-> retrospective). Treat as a hypothesis to test against more sources (academic RL,
-> other STS agents, deckbuilding-game AI work).
+## The pipeline (map)
 
-## Research questions
-_The questions driving this deep-dive. Tell me which to prioritize._
-- What action-space and reward designs work best for deckbuilding-roguelite RL?
-- Can a fair (non-RNG-cheating) agent match search-based combat play?
-- Single full-game agent vs. hierarchical/per-encounter agents — which wins, and why?
-- How feasible is [[transfer-learning]] from expert human play given no replay system?
-- Could an **assist tool** (HP-loss prediction, map annotation) help humans without
-  exploiting hidden internals? → [[hp-loss-model]]
+| # | Stage | Produces | Status |
+|---|-------|----------|--------|
+| 0 | [[stage-0-environment-orientation]] | random-agent smoke test | planned |
+| 1 | [[stage-1-game-interface]] | [[env-game-interface\|env/game_interface.py]] | planned |
+| 2 | [[stage-2-state-encoding]] ★ | [[env-state-encoder\|env/state_encoder.py]] | planned |
+| 3 | [[stage-3-action-parsing]] | `env/action_parser.py` | planned |
+| 4 | [[stage-4-agent-loop-and-prompts]] | `agent/policy.py`, `agent/prompts.py` | planned |
+| 5 | [[stage-5-baseline-evaluation]] | `eval/evaluate.py`, `eval/metrics.py` | planned |
+| 6 | [[stage-6-sft]] | `data/collect_rollouts.py`, `training/sft.py` | planned |
+| 7 | [[stage-7-reward-design]] ★ | `training/reward.py` | planned |
+| 8 | [[stage-8-rl-fine-tuning]] ★ | `training/rl.py` | planned |
+| 9 | [[stage-9-experiments]] | plots + analysis | planned |
+| 10 | [[stage-10-writeup]] | repo + blog post | planned |
 
-## Map of the wiki
-- **Concepts** — [[index#Concepts]] (RL method, action spaces, rewards, curriculum,
-  hierarchy)
-- **People & organizations** — [[index#People & organizations]]
-- **Studies / prior work** — [[index#Studies]] (spirecomm, STS Battle AI,
-  decapitate-the-spire; DQN-Atari, SC2LE)
-- **Claims** — [[index#Claims]]
-- **Sources** — [[index#Sources]]
+★ = where the real intellectual content lives (see thesis below).
 
-## Open tensions & contradictions
-- **Dense rewards vs. reward hacking:** "[[frequent-rewards-beat-sparse|reward
-  frequently]]" pulls toward dense shaping, while the die-fast anecdote shows naive
-  dense shaping backfires. Not a contradiction, but a live design tension.
-- **"Hardcoded won't scale" vs. search plays great:** [[hardcoded-ai-wont-scale]] is
-  an unproven opinion; meanwhile non-learned [[sts-battle-ai]] is strong — flag for
-  more evidence on heuristic vs. search vs. learned.
+## Thesis — where the real learning concentrates
+
+Three stages are worth struggling through rather than routing around; the rest are
+good engineering but more mechanical:
+
+1. **[[state-encoding|State encoding]] (Stage 2)** — the model can only reason about
+   what the text tells it. Detail vs. context budget is a live tension
+   ([[encoding-detail-vs-context-budget]]); a full run is 1000+ decisions.
+2. **[[reward-design|Reward design]] (Stage 7)** — sparse vs. shaped
+   ([[sparse-vs-shaped-reward]]), with [[reward-hacking]] as the trap.
+3. **[[reinforcement-learning-grpo|RL wiring]] (Stage 8)** — reconciling "GRPO rewards
+   a generation" with "my reward comes from a whole multi-step game"
+   ([[grpo-reward-over-a-whole-game]]) is the central puzzle.
+
+**Guardrail (from the roadmap):** resist copying a complete example for Stages 2, 7,
+8 — working those out is most of what the project teaches.
+
+**Explicit fallback:** if RL won't converge after honest effort, the SFT result plus
+an analysis of *why* RL failed is a legitimate, shippable project. Decide the
+give-up threshold in advance — see [[when-to-abandon-rl]].
+
+## Foundational decisions already implied
+
+- [[llm-as-policy]] — use an LLM as the policy (accepted-by-premise).
+- [[use-grpo-over-ppo]] — GRPO for RL (proposed).
+- [[lora-over-full-finetuning]] — LoRA/PEFT, not full fine-tuning (proposed).
+
+## Biggest open questions
+
+[[encoding-detail-vs-context-budget]] · [[how-to-handle-invalid-model-output]] ·
+[[cot-vs-direct-action]] · [[sparse-vs-shaped-reward]] ·
+[[grpo-reward-over-a-whole-game]] · [[how-many-games-to-trust-a-win-rate]] ·
+[[when-to-abandon-rl]]
 
 ---
-_See [[index]] for the full catalog and [[log]] for the timeline._
+
+_Source: [[2026-07-22-project-pipeline]]. This page is the living vision — I revise it
+as the project moves stages._

@@ -1,12 +1,20 @@
-# raw/ — immutable sources
+# raw/ — immutable inputs
 
-Drop your source documents here: papers (PDF/markdown), clipped articles, reports,
-datasets. Images go in `raw/assets/`.
+This folder is the **source of truth**. Everything here is curated by the builder and
+**never modified by the LLM** — the wiki reads from these files and compiles them into
+`wiki/`. If an input is wrong or outdated, add a newer input rather than editing an old
+one, so the history stays honest.
 
-**This folder is the source of truth. The wiki agent reads from it but never edits or
-deletes anything here.** Everything the LLM writes lives in `wiki/` instead.
+**How to add a source**
+1. Drop the file here (or paste it in chat and I'll save it here).
+   - Naming: `YYYY-MM-DD-short-slug.md` (or keep the original name for clipped articles).
+   - Images / screenshots go in `raw/assets/`.
+2. Tell me to ingest it. I read it, discuss takeaways, then compile it into the wiki
+   (source summary + stage/component/concept/decision/question/reference pages),
+   update `index.md`, and log it. See `CLAUDE.md` → *Operation 1 — INGEST*.
 
-After adding a source, tell the agent: _"ingest raw/<filename>"_.
+**What lives here:** project notes and roadmaps, articles and docs you read, chat/call
+transcripts, error logs, code snippets you want captured, screenshots.
 
-Tip: the [Obsidian Web Clipper](https://obsidian.md/clipper) converts web articles to
-markdown straight into this folder.
+Current inputs:
+- `project-pipeline.md` — the 10-stage project roadmap → [[2026-07-22-project-pipeline]]
